@@ -1,0 +1,23 @@
+name: test
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '20 20 * * *'
+
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 打印时间
+        run: |
+          date
+
+     
