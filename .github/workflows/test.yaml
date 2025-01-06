@@ -1,23 +1,30 @@
-name: test
+name: Multi Env
 on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: '22 20 * * *'
+  workflow_dispatch:
 
 
 permissions:
   contents: write
 
 jobs:
-  test:
-    name: test
+  deploy_QA:
+
     runs-on: ubuntu-latest
-
+    environment: QA
     steps:
-      - name: 打印时间
-        run: |
-          date
+    - uses: actions/checkout@v4
 
+  deploy_STG:
+    runs-on: ubuntu-latest
+    environment: STG
+    steps:
+    - uses: actions/checkout@v4
+
+  deploy_PROD:
+    runs-on: ubuntu-latest
+    environment: PROD
+    steps:
+    - uses: actions/checkout@v4
+      
+    
      
