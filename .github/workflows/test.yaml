@@ -17,13 +17,13 @@ jobs:
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
       with:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        SOURCE: "test.go"
-        PEMOTE_HOST: 47.121.131.21
-        PRMOTE_USER: root
-        TARGET: /mnt/test.go
-        SCRIPT_AFTER: |
-          ls /mnt
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SOURCE: "test.go"
+          REMOTE_HOST: 47.121.131.21
+          REMOTE_USER: root
+          TARGET: /mnt/test.go
+          SCRIPT_AFTER: |
+            ls /mnt
         
 
   deploy_STG:
