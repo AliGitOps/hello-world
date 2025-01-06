@@ -19,16 +19,18 @@ jobs:
         echo "${{ secrets.SSH_PEM_KEY }}" > deploy_key.pem
         chmod 600 deploy_key.pem
 
-    - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@main
+    - name: Run deployment script over SSH
+      uses: appleboy/ssh-action@master
       with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SOURCE: "test.go"
-          REMOTE_HOST: 47.121.131.21
-          REMOTE_USER: root
-          TARGET: /mnt/test.go
-          SCRIPT_AFTER: |
-            ls /mnt
+            host: ${{ secrets.SERVER_ADDRESS }}
+            username: ${{ secrets.SERVER_USER }}
+            key_path: deploy_key.pem
+            script_stop: true
+            SCRIPT_AFTER: |
+              ls /mnt
+ 
+
+    
         
 
   deploy_STG:
