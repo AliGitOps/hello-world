@@ -22,6 +22,7 @@ jobs:
           key: ${{ secrets.SSH_PEM_KEY }}
           script: |
             echo "ssh 连接成功"
+            touch /root/action1.txt
          
         
    
